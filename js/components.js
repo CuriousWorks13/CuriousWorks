@@ -200,6 +200,9 @@ function cwCourseCardHTML(course, options) {
   const spotsLeft = cwSpotsLeftFor(course);
   const badgeClass = spotsLeft <= 4 ? 'spots-badge low' : 'spots-badge';
   const spotsText = spotsLeft <= 0 ? 'Waitlist only' : spotsLeft + ' spots left of ' + course.spotsTotal;
+  const termPills = CW_TERMS.map(function (t) {
+    return '<span class="term-pill">' + t.range + '</span>';
+  }).join('');
 
   return (
     '<article class="course-card reveal" data-field="' + course.field + '">' +
@@ -213,6 +216,10 @@ function cwCourseCardHTML(course, options) {
           '<div class="meta-item"><span class="meta-label">Level</span><span class="meta-value">' + course.level + '</span></div>' +
           '<div class="meta-item"><span class="meta-label">Duration</span><span class="meta-value">' + course.duration + '</span></div>' +
           '<div class="meta-item"><span class="meta-label">Instructor</span><span class="meta-value">' + course.instructor + '</span></div>' +
+        '</div>' +
+        '<div class="term-availability">' +
+          '<span class="meta-label">Available Terms</span>' +
+          '<div class="term-pill-row">' + termPills + '</div>' +
         '</div>' +
         '<span class="' + badgeClass + '">' + spotsText + '</span>' +
         '<a href="' + (opts.withLink === false ? '#' : 'enroll.html?course=' + course.slug) + '" class="btn btn-primary btn-block">Enroll Now</a>' +
