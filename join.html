@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join Us — Curious Works</title>
+<meta name="description" content="Become an instructor, volunteer, or partner with Curious Works — or apply to join the team directly.">
+<link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="join">
+
+<header class="site-header" id="site-header"></header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="eyebrow">Join Us</div>
+      <h1>Help push curiosity a little further.</h1>
+      <p>Curious Works runs entirely on people who care about this mission — instructors, volunteers, and partners. Here's how to get involved.</p>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container">
+      <div class="grid grid-3">
+        <div class="card involve-card reveal">
+          <div class="card-icon">◆</div>
+          <h3>Become an Instructor</h3>
+          <p>Design and teach a course in a subject you love. We provide training and curriculum support.</p>
+          <ul>
+            <li>High school students and above</li>
+            <li>No prior teaching experience required</li>
+            <li>Flexible, part-time commitment</li>
+          </ul>
+        </div>
+        <div class="card involve-card reveal">
+          <div class="card-icon">◆</div>
+          <h3>Volunteer</h3>
+          <p>Support live sessions, help with logistics, or assist instructors during class time.</p>
+          <ul>
+            <li>Great for a first-time volunteer</li>
+            <li>Flexible scheduling</li>
+            <li>Remote and in-person options</li>
+          </ul>
+        </div>
+        <div class="card involve-card reveal">
+          <div class="card-icon">◆</div>
+          <h3>Help with Curriculum</h3>
+          <p>Research topics, build lesson plans, and design activities used across multiple courses.</p>
+          <ul>
+            <li>Good fit for detail-oriented planners</li>
+            <li>Work at your own pace</li>
+            <li>Direct input on what gets taught</li>
+          </ul>
+        </div>
+        <div class="card involve-card reveal">
+          <div class="card-icon">◆</div>
+          <h3>Help with Outreach</h3>
+          <p>Spread the word to families, schools, and communities who could benefit from Curious Works.</p>
+          <ul>
+            <li>Social media and content</li>
+            <li>School and community partnerships</li>
+            <li>Event coordination</li>
+          </ul>
+        </div>
+        <div class="card involve-card reveal">
+          <div class="card-icon">◆</div>
+          <h3>Become a Partner</h3>
+          <p>Schools, nonprofits, and community organizations can bring Curious Works programming to their students.</p>
+          <ul>
+            <li>Co-hosted sessions or workshops</li>
+            <li>Custom scheduling</li>
+            <li>Long-term collaboration</li>
+          </ul>
+        </div>
+        <div class="card involve-card reveal">
+          <div class="card-icon">◆</div>
+          <h3>Support Curious Works</h3>
+          <p>Help fund materials, platforms, and outreach that keep courses free or low-cost for families.</p>
+          <ul>
+            <li>One-time or recurring support</li>
+            <li>Sponsor a course or classroom</li>
+            <li>Contact us for details <span class="placeholder-tag">Placeholder</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container" style="max-width: 760px;">
+      <div class="section-header reveal">
+        <div class="eyebrow">Join the Team</div>
+        <h2>Submit an application</h2>
+        <p>Tell us a bit about yourself and how you'd like to contribute. We'll follow up by email. <span class="placeholder-tag">Demo Form</span></p>
+      </div>
+
+      <div class="form-card">
+
+        <form id="join-form" novalidate>
+          <div class="form-row">
+            <div class="field">
+              <label for="join-name">Full Name</label>
+              <input type="text" id="join-name" name="name" placeholder="Your name" required>
+            </div>
+            <div class="field">
+              <label for="join-email">Email Address</label>
+              <input type="email" id="join-email" name="email" placeholder="you@example.com" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="join-age">Grade / Age</label>
+              <input type="text" id="join-age" name="gradeOrAge" placeholder="e.g. 10th Grade or Adult" required>
+            </div>
+            <div class="field">
+              <label for="join-role">Role You're Interested In</label>
+              <select id="join-role" name="role" required>
+                <option value="" disabled selected>Select a role</option>
+                <option value="instructor">Instructor</option>
+                <option value="volunteer">Volunteer</option>
+                <option value="curriculum">Curriculum Development</option>
+                <option value="outreach">Outreach</option>
+                <option value="partner">Partner Organization</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="join-skills">Skills / Interests</label>
+            <textarea id="join-skills" name="skills" placeholder="What subjects, skills, or experience would you bring?" required></textarea>
+          </div>
+
+          <div class="field">
+            <label for="join-why">Why do you want to join Curious Works?</label>
+            <textarea id="join-why" name="whyJoin" placeholder="Tell us what draws you to this mission." required></textarea>
+          </div>
+
+          <div class="field">
+            <label for="join-availability">Availability</label>
+            <input type="text" id="join-availability" name="availability" placeholder="e.g. Weekday evenings, 2–3 hrs/week" required>
+          </div>
+
+          <div class="field">
+            <label for="join-more">Anything else we should know? <span class="hint" style="display:inline;">(optional)</span></label>
+            <textarea id="join-more" name="additionalInfo" placeholder="Optional — links to work, references, questions, etc."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block" style="margin-top: 8px;">Submit Application</button>
+        </form>
+
+        <div class="confirm-panel hidden" id="join-confirm">
+          <div class="confirm-icon">✓</div>
+          <h3>Application received!</h3>
+          <p>Thanks for wanting to be part of Curious Works. We review applications on a rolling basis and will reach out by email. <span class="placeholder-tag">Demo Confirmation</span></p>
+          <a href="index.html" class="btn btn-secondary">Back to Home</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="js/components.js"></script>
+<script src="js/forms.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    cwHandleForm('#join-form', '#join-confirm', { endpoint: '/api/join-application' });
+  });
+</script>
+</body>
+</html>
