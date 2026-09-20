@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Curious Works — Curiosity Has No Limits</title>
+<meta name="description" content="Curious Works is a student-led educational initiative teaching elementary and middle school students about a wide variety of interesting and diverse topics.">
+<link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="home">
+
+<header class="site-header" id="site-header"></header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+      <canvas id="particle-canvas"></canvas>
+    </div>
+    <div class="container hero-inner">
+      <img src="assets/logo-mark.svg" alt="Curious Works" class="hero-logo">
+      <div class="hero-tagline">Pushing past our limits.</div>
+      <h1>Curiosity has no limits.</h1>
+      <p class="hero-sub">Explore. Learn. Create. Go further. Curious Works is a student-led initiative bringing exciting, diverse topics to elementary and middle schoolers — the ones they never knew they'd love.</p>
+      <div class="hero-actions">
+        <a href="courses.html" class="btn btn-primary">Explore Courses</a>
+        <a href="join.html" class="btn btn-secondary">Join Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT CURIOUS WORKS IS -->
+  <section class="section">
+    <div class="container">
+      <div class="two-col">
+        <div class="reveal">
+          <div class="eyebrow">What We Are</div>
+          <h2>An educational initiative built by students, for students.</h2>
+          <p>Curious Works is a growing collective of high schoolers who design and teach short courses on subjects rarely covered in a typical classroom — from artificial intelligence to astrophysics to the psychology of decision-making.</p>
+          <p>We believe the best time to fall in love with a subject is before anyone tells you it's "too advanced." So we build lessons that meet younger students exactly where they are, and then push a little further.</p>
+          <ul class="list-check">
+            <li>Live, interactive sessions taught by trained student instructors</li>
+            <li>Original curriculum designed specifically for elementary and middle schoolers</li>
+            <li>A rotating catalog spanning technology, science, business, and creative thinking</li>
+          </ul>
+        </div>
+        <div class="reveal">
+          <div class="grid grid-2">
+            <div class="card">
+              <div class="card-icon">01</div>
+              <h3>Curiosity-first</h3>
+              <p>Every course starts from a question worth asking, not a standard to check off.</p>
+            </div>
+            <div class="card">
+              <div class="card-icon">02</div>
+              <h3>Student-led</h3>
+              <p>Designed and taught by high schoolers who remember what made them curious.</p>
+            </div>
+            <div class="card">
+              <div class="card-icon">03</div>
+              <h3>Wide-ranging</h3>
+              <p>From AI to astronomy — topics chosen for range, not just relevance to a test.</p>
+            </div>
+            <div class="card">
+              <div class="card-icon">04</div>
+              <h3>Built to scale</h3>
+              <p>A model designed to reach classrooms and families far beyond where we started.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY WE EXIST -->
+  <section class="section section-tight">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow">Why We Exist</div>
+        <h2>School answers "what." We chase "what if."</h2>
+        <p>Standard curricula are built for coverage and pacing — not for the tangents that turn a curious kid into a lifelong learner. Curious Works exists to fill that gap.</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="card reveal">
+          <div class="card-icon">✦</div>
+          <h3>Exposure over memorization</h3>
+          <p>We introduce ideas — not just facts — so students discover what excites them long before it's a class requirement.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon">✦</div>
+          <h3>Taught by people who get it</h3>
+          <p>Our instructors are a few years ahead, not a few decades — close enough to make learning feel approachable and real.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon">✦</div>
+          <h3>A model that scales</h3>
+          <p>We're building Curious Works to grow well beyond one school, one city, or one group of founding students.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED COURSES -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow">Featured Courses</div>
+        <h2>A small sample of what students explore</h2>
+        <p>Every course is built from scratch by our instructors, with age-appropriate depth and plenty of room for questions.</p>
+      </div>
+      <div class="grid grid-3" id="featured-courses"></div>
+      <div class="text-center" style="margin-top: 40px;">
+        <a href="courses.html" class="btn btn-secondary">View Full Course Catalog</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT PREVIEW -->
+  <section class="section section-tight">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow">Our Impact</div>
+        <h2>Early — but growing fast</h2>
+        <p>Curious Works is a young initiative. These are our starting numbers, tracked honestly as we scale. <span class="placeholder-tag">Example Data</span></p>
+      </div>
+      <div class="grid grid-4">
+        <div class="card stat-card reveal">
+          <div class="stat-number" data-count="340" data-suffix="+">0</div>
+          <div class="stat-label">Students Reached</div>
+        </div>
+        <div class="card stat-card reveal">
+          <div class="stat-number" data-count="8">0</div>
+          <div class="stat-label">Courses Offered</div>
+        </div>
+        <div class="card stat-card reveal">
+          <div class="stat-number" data-count="20">0</div>
+          <div class="stat-label">Topics Explored</div>
+        </div>
+        <div class="card stat-card reveal">
+          <div class="stat-number" data-count="450" data-suffix="+">0</div>
+          <div class="stat-label">Volunteer Hours</div>
+        </div>
+      </div>
+      <div class="text-center" style="margin-top: 32px;">
+        <a href="impact.html" class="btn btn-ghost">See our full impact report →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section-tight">
+    <div class="container">
+      <div class="cta-banner reveal">
+        <h2>Ready to go further?</h2>
+        <p>Whether you're a parent looking for your child's next favorite subject, or a student who wants to teach one — there's a place for you at Curious Works.</p>
+        <div class="cta-actions">
+          <a href="enroll.html" class="btn btn-primary">Enroll a Student</a>
+          <a href="join.html" class="btn btn-secondary">Get Involved</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="js/courses-data.js"></script>
+<script src="js/components.js"></script>
+<script src="js/particles.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const wrap = document.getElementById('featured-courses');
+    const featured = CW_COURSES.slice(0, 3);
+    wrap.innerHTML = featured.map(function (c) { return cwCourseCardHTML(c); }).join('');
+    cwInitScrollReveal();
+    cwAnimateCounters();
+  });
+</script>
+</body>
+</html>
