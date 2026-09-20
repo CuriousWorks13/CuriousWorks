@@ -68,7 +68,7 @@
             </div>
             <div class="field">
               <label for="parent-email">Email Address</label>
-              <input type="email" id="parent-email" name="parentEmail" placeholder="you@example.com" required>
+              <input type="email" id="parent-email" name="_replyto" placeholder="you@example.com" required>
             </div>
           </div>
 
@@ -82,6 +82,7 @@
             <label for="enroll-consent">I understand this is a request to enroll and that a Curious Works team member will follow up to confirm my spot and next steps.</label>
           </div>
 
+          <input type="hidden" name="_subject" value="New Curious Works Enrollment">
           <button type="submit" class="btn btn-primary btn-block" style="margin-top: 8px;">Submit Enrollment</button>
         </form>
 
@@ -135,7 +136,7 @@
     select.addEventListener('change', updateSummary);
 
     cwHandleForm('#enroll-form', '#enroll-confirm', {
-      endpoint: '/api/enroll',
+      endpoint: 'https://formspree.io/f/xyezezeb',
       onSuccess: function (data) {
         cwMarkEnrolled(data.course);
         const term = CW_TERMS.find(function (t) { return t.key === data.term; });
