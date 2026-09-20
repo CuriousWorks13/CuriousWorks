@@ -541,6 +541,19 @@ body {
 .meta-label { color: var(--text-faint); display: block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2px; }
 .meta-value { color: var(--text); font-weight: 500; }
 
+.term-availability { margin-bottom: 16px; }
+.term-pill-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.term-pill {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--accent-2);
+  background: var(--accent-glow-soft);
+  border: 1px solid rgba(58, 168, 255, 0.25);
+  border-radius: var(--radius-pill);
+  padding: 4px 10px;
+  white-space: nowrap;
+}
+
 .spots-badge {
   display: inline-flex;
   align-items: center;

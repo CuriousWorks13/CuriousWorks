@@ -39,9 +39,15 @@
       <div class="form-card reveal fade-only">
 
         <form id="enroll-form" novalidate>
-          <div class="field">
-            <label for="course-select">Course</label>
-            <select id="course-select" name="course" required></select>
+          <div class="form-row">
+            <div class="field">
+              <label for="course-select">Course</label>
+              <select id="course-select" name="course" required></select>
+            </div>
+            <div class="field">
+              <label for="term-select">Term</label>
+              <select id="term-select" name="term" required></select>
+            </div>
           </div>
 
           <div class="form-row">
@@ -82,7 +88,7 @@
         <div class="confirm-panel hidden" id="enroll-confirm">
           <div class="confirm-icon">✓</div>
           <h3>You're on the list!</h3>
-          <p>Thanks for enrolling — we've received your request and will email you within 2–3 business days to confirm scheduling and payment.</p>
+          <p id="enroll-confirm-detail">Thanks for enrolling — we've received your request and will email you within 2–3 business days to confirm scheduling and payment.</p>
           <a href="courses.html" class="btn btn-secondary">Browse More Courses</a>
         </div>
 
@@ -105,6 +111,11 @@
       return '<option value="' + c.slug + '">' + c.title + '</option>';
     }).join('');
 
+    const termSelect = document.getElementById('term-select');
+    termSelect.innerHTML = CW_TERMS.map(function (t) {
+      return '<option value="' + t.key + '">' + t.label + ' (' + t.range + ')</option>';
+    }).join('');
+
     const params = new URLSearchParams(window.location.search);
     const preselect = params.get('course');
     const course = preselect ? cwFindCourse(preselect) : null;
@@ -125,7 +136,15 @@
 
     cwHandleForm('#enroll-form', '#enroll-confirm', {
       endpoint: '/api/enroll',
-      onSuccess: function (data) { cwMarkEnrolled(data.course); }
+      onSuccess: function (data) {
+        cwMarkEnrolled(data.course);
+        const term = CW_TERMS.find(function (t) { return t.key === data.term; });
+        const selected = cwFindCourse(data.course);
+        if (term && selected) {
+          document.getElementById('enroll-confirm-detail').textContent =
+            'Thanks for enrolling ' + selected.title + ' for the ' + term.label + ' term (' + term.range + ') — we\'ll email you within 2–3 business days to confirm scheduling and payment.';
+        }
+      }
     });
   });
 </script>

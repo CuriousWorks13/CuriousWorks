@@ -7,6 +7,21 @@
  * are examples only — replace with real program details before launch.
  */
 
+/**
+ * Every course runs the same four terms per year. Each term spans the first
+ * Saturday through the last Sunday of its month, meeting Saturdays & Sundays
+ * (8 sessions ≈ the 4-week course length). Terms below all land on exactly
+ * 8 weekend dates within the month itself — none needed the "spill into the
+ * start of next month" fallback, but that's the rule to follow if a future
+ * term's month doesn't line up to 8 sessions on its own.
+ */
+const CW_TERMS = [
+  { key: 'nov-2026', label: 'November 2026', range: 'Nov 7 – Nov 29, 2026' },
+  { key: 'dec-2026', label: 'December 2026', range: 'Dec 5 – Dec 27, 2026' },
+  { key: 'feb-2027', label: 'February 2027', range: 'Feb 6 – Feb 28, 2027' },
+  { key: 'apr-2027', label: 'April 2027', range: 'Apr 3 – Apr 25, 2027' }
+];
+
 const CW_ICONS = {
   leaf: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20C4 11 11 4 20 4c0 9-7 16-16 16Z"/><path d="M4 20 12 12"/></svg>',
   flask: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v5l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/><path d="M8.5 14h7"/></svg>',
@@ -33,10 +48,10 @@ const CW_COURSES = [
     description: 'Explore cells, genetics, and ecosystems through hands-on models and experiments that reveal how living things work.',
     ageRange: 'Grades 6–8',
     level: 'Beginner',
-    duration: '6 weeks · 1 hr/session · Online',
+    duration: '4 weeks · 1 hr/session · Online',
     instructor: 'Maya Whitfield', // placeholder
-    spotsTotal: 18,
-    spotsLeft: 10
+    spotsTotal: 15,
+    spotsLeft: 8
   },
   {
     slug: 'chemistry',
@@ -46,9 +61,9 @@ const CW_COURSES = [
     description: 'Mix, react, and observe — an introduction to atoms, molecules, and chemical reactions through safe, guided experiments.',
     ageRange: 'Grades 7–8',
     level: 'Intermediate',
-    duration: '6 weeks · 1 hr/session · Online',
+    duration: '4 weeks · 1 hr/session · Online',
     instructor: 'Priya Natarajan', // placeholder
-    spotsTotal: 16,
+    spotsTotal: 15,
     spotsLeft: 5
   },
   {
@@ -59,10 +74,10 @@ const CW_COURSES = [
     description: 'Investigate motion, forces, and energy through simple experiments that make the rules of the physical world click.',
     ageRange: 'Grades 7–8',
     level: 'Intermediate',
-    duration: '6 weeks · 1 hr/session · Online',
+    duration: '4 weeks · 1 hr/session · Online',
     instructor: 'Daniel Osei', // placeholder
-    spotsTotal: 16,
-    spotsLeft: 8
+    spotsTotal: 15,
+    spotsLeft: 7
   },
   {
     slug: 'anatomy-and-physiology',
@@ -72,10 +87,10 @@ const CW_COURSES = [
     description: 'Explore how the heart, brain, lungs, and muscles work together, through models, diagrams, and simple hands-on experiments.',
     ageRange: 'Grades 6–8',
     level: 'Beginner',
-    duration: '5 weeks · 1 hr/session · Online',
+    duration: '4 weeks · 1 hr/session · Online',
     instructor: 'Sofia Marchetti', // placeholder
-    spotsTotal: 18,
-    spotsLeft: 12
+    spotsTotal: 15,
+    spotsLeft: 10
   },
 
   // --- Computer Science & Technology ---
@@ -87,10 +102,10 @@ const CW_COURSES = [
     description: 'Write real programs from scratch — variables, loops, and functions — building toward small games and tools.',
     ageRange: 'Grades 5–8',
     level: 'Beginner',
-    duration: '8 weeks · 1 hr/session · Online',
+    duration: '4 weeks · 1 hr/session · Online',
     instructor: 'Ethan Park', // placeholder
-    spotsTotal: 24,
-    spotsLeft: 9
+    spotsTotal: 15,
+    spotsLeft: 6
   },
   {
     slug: 'html',
@@ -100,10 +115,10 @@ const CW_COURSES = [
     description: 'Build real web pages from scratch, learning the building blocks every website is made of.',
     ageRange: 'Grades 5–8',
     level: 'Beginner',
-    duration: '5 weeks · 1 hr/session · Online',
+    duration: '4 weeks · 1 hr/session · Online',
     instructor: 'Noah Bennett', // placeholder
-    spotsTotal: 20,
-    spotsLeft: 14
+    spotsTotal: 15,
+    spotsLeft: 10
   },
   {
     slug: 'artificial-intelligence',
@@ -113,10 +128,10 @@ const CW_COURSES = [
     description: 'A hands-on first look at how machines learn — from pattern recognition to simple neural networks — through visual tools and real examples.',
     ageRange: 'Grades 5–8',
     level: 'Beginner',
-    duration: '6 weeks · 1 hr/session · Online',
+    duration: '4 weeks · 1 hr/session · Online',
     instructor: 'Aiden Cho', // placeholder
-    spotsTotal: 20,
-    spotsLeft: 6
+    spotsTotal: 15,
+    spotsLeft: 5
   },
 
   // --- Business ---
@@ -128,10 +143,10 @@ const CW_COURSES = [
     description: 'Turn an idea into a plan — students design a product, build a brand, and pitch a business in a final showcase.',
     ageRange: 'Grades 6–8',
     level: 'Beginner',
-    duration: '6 weeks · 1 hr/session · Online',
+    duration: '4 weeks · 1 hr/session · Online',
     instructor: 'Renee Ibarra', // placeholder
-    spotsTotal: 18,
-    spotsLeft: 8
+    spotsTotal: 15,
+    spotsLeft: 7
   },
 
   // --- Mathematics ---
@@ -143,10 +158,10 @@ const CW_COURSES = [
     description: 'Build a rock-solid foundation in operations, fractions, and ratios to get ready for algebra.',
     ageRange: 'Grades 5–6',
     level: 'Beginner',
-    duration: '8 weeks · 1 hr/session · Online',
+    duration: '4 weeks · 1 hr/session · Online',
     instructor: 'Lily Chen', // placeholder
-    spotsTotal: 20,
-    spotsLeft: 15
+    spotsTotal: 15,
+    spotsLeft: 11
   },
   {
     slug: 'algebra-1',
@@ -156,10 +171,10 @@ const CW_COURSES = [
     description: 'Master variables, equations, and functions with plenty of practice and real-world problem solving.',
     ageRange: 'Grades 6–7',
     level: 'Beginner',
-    duration: '10 weeks · 1 hr/session · Online',
+    duration: '4 weeks · 1 hr/session · Online',
     instructor: 'Marcus Webb', // placeholder
-    spotsTotal: 20,
-    spotsLeft: 11
+    spotsTotal: 15,
+    spotsLeft: 8
   },
   {
     slug: 'geometry',
@@ -169,10 +184,10 @@ const CW_COURSES = [
     description: 'Explore shapes, proofs, and spatial reasoning through visual, hands-on problem solving.',
     ageRange: 'Grades 7–8',
     level: 'Intermediate',
-    duration: '10 weeks · 1 hr/session · Online',
+    duration: '4 weeks · 1 hr/session · Online',
     instructor: 'Ava Torres', // placeholder
-    spotsTotal: 18,
-    spotsLeft: 7
+    spotsTotal: 15,
+    spotsLeft: 6
   },
   {
     slug: 'algebra-2',
@@ -182,10 +197,10 @@ const CW_COURSES = [
     description: 'Extend algebra into polynomials, exponentials, and functions, building toward trigonometry and calculus.',
     ageRange: 'Grades 7–8',
     level: 'Intermediate',
-    duration: '10 weeks · 1 hr/session · Online',
+    duration: '4 weeks · 1 hr/session · Online',
     instructor: 'Marcus Webb', // placeholder
-    spotsTotal: 18,
-    spotsLeft: 4
+    spotsTotal: 15,
+    spotsLeft: 3
   },
   {
     slug: 'trigonometry',
@@ -195,10 +210,10 @@ const CW_COURSES = [
     description: 'Learn the relationships between angles and sides, and how trig functions describe waves and cycles.',
     ageRange: 'Grade 8',
     level: 'Intermediate',
-    duration: '8 weeks · 1 hr/session · Online',
+    duration: '4 weeks · 1 hr/session · Online',
     instructor: 'Ryan Delacroix', // placeholder
-    spotsTotal: 16,
-    spotsLeft: 9
+    spotsTotal: 15,
+    spotsLeft: 7
   },
   {
     slug: 'introduction-to-calculus',
@@ -208,9 +223,9 @@ const CW_COURSES = [
     description: 'A first look at limits, derivatives, and rates of change for students ready to go beyond algebra.',
     ageRange: 'Grade 8',
     level: 'Advanced',
-    duration: '8 weeks · 1 hr/session · Online',
+    duration: '4 weeks · 1 hr/session · Online',
     instructor: 'Grace Kim', // placeholder
-    spotsTotal: 14,
+    spotsTotal: 15,
     spotsLeft: 3
   }
 ];
