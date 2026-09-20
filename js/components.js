@@ -23,8 +23,8 @@ function cwHeaderTemplate(activePage) {
   return (
     '<div class="navbar">' +
       '<a href="index.html" class="brand" aria-label="Curious Works home">' +
-        '<img class="brand-mark" src="assets/logo-mark.svg" alt="" width="34" height="34">' +
-        '<span class="brand-word">Curious<span class="dim">Works</span></span>' +
+        '<img class="brand-mark" src="assets/logo-mark.png" alt="" height="34">' +
+        '<img class="brand-wordmark" src="assets/wordmark.png" alt="Curious Works" height="20">' +
       '</a>' +
       '<nav class="nav-links" id="nav-links">' +
         links +
@@ -47,8 +47,8 @@ function cwFooterTemplate() {
       '<div class="footer-grid">' +
         '<div class="footer-brand">' +
           '<a href="index.html" class="brand" aria-label="Curious Works home">' +
-            '<img class="brand-mark" src="assets/logo-mark.svg" alt="" width="30" height="30">' +
-            '<span class="brand-word">Curious<span class="dim">Works</span></span>' +
+            '<img class="brand-mark" src="assets/logo-mark.png" alt="" height="30">' +
+            '<img class="brand-wordmark" src="assets/wordmark.png" alt="Curious Works" height="18">' +
           '</a>' +
           '<div class="footer-tagline">Pushing past our limits.</div>' +
           '<p>A student-led educational initiative bringing curiosity-driven learning to elementary and middle school students everywhere.</p>' +

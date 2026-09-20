@@ -267,10 +267,11 @@ body {
   color: var(--text);
 }
 
-.brand-mark { width: 34px; height: 34px; }
+.brand-mark { height: 34px; width: auto; }
+.brand-wordmark { height: 20px; width: auto; }
 
-.brand-word { letter-spacing: -0.01em; }
-.brand-word .dim { color: var(--text-faint); font-weight: 500; }
+.site-footer .brand-mark { height: 30px; }
+.site-footer .brand-wordmark { height: 18px; }
 
 .nav-links {
   display: flex;
@@ -386,7 +387,7 @@ body {
 
 .hero-inner { text-align: center; max-width: 780px; margin: 0 auto; }
 
-.hero-logo { width: 72px; height: 72px; margin: 0 auto 28px; }
+.hero-logo { height: 72px; width: auto; margin: 0 auto 28px; }
 
 .hero-tagline {
   font-family: var(--font-heading);
