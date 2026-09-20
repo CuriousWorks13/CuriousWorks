@@ -169,21 +169,6 @@ body {
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
 }
 
-.placeholder-tag {
-  display: inline-block;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #ffb454;
-  background: rgba(255, 180, 84, 0.12);
-  border: 1px solid rgba(255, 180, 84, 0.3);
-  border-radius: var(--radius-pill);
-  padding: 3px 10px;
-  margin-left: 8px;
-  vertical-align: middle;
-}
-
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-flex;
@@ -345,32 +330,28 @@ body {
   .nav-cta .btn { width: 100%; }
 }
 
-/* ---------- Hero ---------- */
-.hero {
-  position: relative;
-  padding: 130px 0 110px;
-  overflow: hidden;
-  isolation: isolate;
-}
-
-.hero-bg {
-  position: absolute;
+/* ---------- Site-wide fixed background ----------
+   Stays pinned to the viewport across every page, so only content scrolls —
+   the glow/particles never move or get clipped by section boundaries. */
+.site-bg {
+  position: fixed;
   inset: 0;
-  z-index: -2;
+  z-index: -3;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .orb {
   position: absolute;
   border-radius: 50%;
   filter: blur(60px);
-  opacity: 0.55;
-  animation: float 18s ease-in-out infinite;
+  opacity: 0.4;
+  animation: float 22s ease-in-out infinite;
 }
 
-.orb-1 { width: 420px; height: 420px; background: radial-gradient(circle, var(--accent) 0%, transparent 70%); top: -120px; left: -80px; animation-delay: 0s; }
-.orb-2 { width: 360px; height: 360px; background: radial-gradient(circle, var(--accent-2) 0%, transparent 70%); top: 40px; right: -100px; animation-delay: -6s; }
-.orb-3 { width: 300px; height: 300px; background: radial-gradient(circle, var(--accent-deep) 0%, transparent 70%); bottom: -140px; left: 30%; animation-delay: -12s; }
+.orb-1 { width: 460px; height: 460px; background: radial-gradient(circle, var(--accent) 0%, transparent 70%); top: -10%; left: -8%; animation-delay: 0s; }
+.orb-2 { width: 380px; height: 380px; background: radial-gradient(circle, var(--accent-2) 0%, transparent 70%); top: 5%; right: -8%; animation-delay: -7s; }
+.orb-3 { width: 340px; height: 340px; background: radial-gradient(circle, var(--accent-deep) 0%, transparent 70%); bottom: -12%; left: 30%; animation-delay: -14s; }
 
 @keyframes float {
   0%, 100% { transform: translate(0, 0) scale(1); }
@@ -381,8 +362,13 @@ body {
 #particle-canvas {
   position: absolute;
   inset: 0;
-  z-index: -1;
-  opacity: 0.6;
+  opacity: 0.5;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  padding: 130px 0 110px;
 }
 
 .hero-inner { text-align: center; max-width: 780px; margin: 0 auto; }
@@ -454,13 +440,49 @@ body {
 .card h3 { font-size: 1.2rem; margin-bottom: 10px; }
 .card p { margin-bottom: 0; font-size: 0.95rem; }
 
-/* ---------- Scroll reveal ---------- */
+/* ---------- Scroll reveal ----------
+   Base = fade + rise. Direction modifiers layer on top for variety
+   (from-left, from-right, from-top, fade-only, pop). Stagger utility
+   below adds a per-row cascade to grid children automatically. */
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 700ms ease, transform 700ms ease;
+  transform: translateY(28px);
+  transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1), transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
-.reveal.in-view { opacity: 1; transform: translateY(0); }
+.reveal.in-view { opacity: 1; transform: none; }
+
+.reveal.from-left { transform: translateX(-56px); }
+.reveal.from-left.in-view { transform: none; }
+
+.reveal.from-right { transform: translateX(56px); }
+.reveal.from-right.in-view { transform: none; }
+
+.reveal.from-top { transform: translateY(-32px); }
+.reveal.from-top.in-view { transform: none; }
+
+.reveal.fade-only { transform: none; }
+
+.reveal.pop { transform: scale(0.94); }
+.reveal.pop.in-view { transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal.from-left, .reveal.from-right, .reveal.from-top, .reveal.pop { transform: none; }
+}
+
+/* Per-row cascade for grids of revealed items — purely CSS, works whether
+   the cards are static markup or injected by JS. */
+.grid-2 > .reveal:nth-child(2n+1) { transition-delay: 0ms; }
+.grid-2 > .reveal:nth-child(2n)   { transition-delay: 110ms; }
+
+.grid-3 > .reveal:nth-child(3n+1) { transition-delay: 0ms; }
+.grid-3 > .reveal:nth-child(3n+2) { transition-delay: 100ms; }
+.grid-3 > .reveal:nth-child(3n)   { transition-delay: 200ms; }
+
+.grid-4 > .reveal:nth-child(4n+1) { transition-delay: 0ms; }
+.grid-4 > .reveal:nth-child(4n+2) { transition-delay: 90ms; }
+.grid-4 > .reveal:nth-child(4n+3) { transition-delay: 180ms; }
+.grid-4 > .reveal:nth-child(4n)   { transition-delay: 270ms; }
 
 /* ---------- Course cards ---------- */
 .course-card {

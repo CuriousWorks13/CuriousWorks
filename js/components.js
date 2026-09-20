@@ -79,8 +79,8 @@ function cwFooterTemplate() {
         '<div class="footer-col">' +
           '<h4>Contact</h4>' +
           '<ul>' +
-            '<li><a href="mailto:hello@example.com">hello@example.com <span class="placeholder-tag">Placeholder</span></a></li>' +
-            '<li>Serving students nationwide <span class="placeholder-tag">Placeholder</span></li>' +
+            '<li><a href="mailto:hello@example.com">hello@example.com</a></li>' +
+            '<li>Serving students nationwide</li>' +
           '</ul>' +
         '</div>' +
       '</div>' +
@@ -93,7 +93,22 @@ function cwFooterTemplate() {
   );
 }
 
+/** Injects the fixed, viewport-pinned background (orbs + particles) once per page. */
+function cwInitBackground() {
+  if (document.querySelector('.site-bg')) return;
+  const bg = document.createElement('div');
+  bg.className = 'site-bg';
+  bg.setAttribute('aria-hidden', 'true');
+  bg.innerHTML =
+    '<div class="orb orb-1"></div>' +
+    '<div class="orb orb-2"></div>' +
+    '<div class="orb orb-3"></div>' +
+    '<canvas id="particle-canvas"></canvas>';
+  document.body.insertBefore(bg, document.body.firstChild);
+}
+
 function cwInitChrome() {
+  cwInitBackground();
   const header = document.getElementById('site-header');
   const footer = document.getElementById('site-footer');
   const activePage = document.body.getAttribute('data-page') || '';
@@ -150,11 +165,41 @@ function cwInitScrollReveal() {
   }, 2500);
 }
 
+/**
+ * Per-visitor enrollment tracking (localStorage). There is no backend yet, so
+ * this only reflects what THIS browser has actually enrolled in — it never
+ * fabricates other people's activity. Once a real backend exists, swap this
+ * for a live spots-remaining count from the API.
+ */
+function cwGetEnrolledSlugs() {
+  try {
+    return JSON.parse(localStorage.getItem('cw_enrollments') || '[]');
+  } catch (e) {
+    return [];
+  }
+}
+
+function cwMarkEnrolled(slug) {
+  try {
+    const list = cwGetEnrolledSlugs();
+    if (!list.includes(slug)) {
+      list.push(slug);
+      localStorage.setItem('cw_enrollments', JSON.stringify(list));
+    }
+  } catch (e) { /* localStorage unavailable — spots display just won't persist */ }
+}
+
+function cwSpotsLeftFor(course) {
+  const takenByMe = cwGetEnrolledSlugs().includes(course.slug) ? 1 : 0;
+  return Math.max(0, course.spotsLeft - takenByMe);
+}
+
 /** Renders a course card. `withLink` (default true) points Enroll Now at enroll.html?course=slug */
 function cwCourseCardHTML(course, options) {
   const opts = options || {};
-  const badgeClass = course.spotsLeft <= 4 ? 'spots-badge low' : 'spots-badge';
-  const spotsText = course.spotsLeft <= 0 ? 'Waitlist only' : course.spotsLeft + ' spots left of ' + course.spotsTotal;
+  const spotsLeft = cwSpotsLeftFor(course);
+  const badgeClass = spotsLeft <= 4 ? 'spots-badge low' : 'spots-badge';
+  const spotsText = spotsLeft <= 0 ? 'Waitlist only' : spotsLeft + ' spots left of ' + course.spotsTotal;
 
   return (
     '<article class="course-card reveal" data-field="' + course.field + '">' +

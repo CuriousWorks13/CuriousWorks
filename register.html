@@ -21,13 +21,13 @@
     <div class="container">
       <div class="eyebrow">Register</div>
       <h1>Create your Curious Works account.</h1>
-      <p>Register as a student or parent to save your interests, track enrollments, and hear about new courses first. <span class="placeholder-tag">Demo Form</span></p>
+      <p>Register as a student or parent to save your interests, track enrollments, and hear about new courses first.</p>
     </div>
   </section>
 
   <section class="section-tight">
     <div class="container" style="max-width: 640px;">
-      <div class="form-card">
+      <div class="form-card reveal fade-only">
 
         <form id="register-form" novalidate>
 
@@ -72,13 +72,10 @@
           <fieldset>
             <legend>Preferred Subjects</legend>
             <div class="checkbox-grid">
-              <label class="checkbox-field"><input type="checkbox" name="subjects" value="Technology"><span>Technology</span></label>
-              <label class="checkbox-field"><input type="checkbox" name="subjects" value="Life Science"><span>Life Science</span></label>
-              <label class="checkbox-field"><input type="checkbox" name="subjects" value="Engineering"><span>Engineering</span></label>
-              <label class="checkbox-field"><input type="checkbox" name="subjects" value="Space Science"><span>Space Science</span></label>
-              <label class="checkbox-field"><input type="checkbox" name="subjects" value="Psychology"><span>Psychology</span></label>
+              <label class="checkbox-field"><input type="checkbox" name="subjects" value="Science"><span>Science</span></label>
+              <label class="checkbox-field"><input type="checkbox" name="subjects" value="Computer Science & Technology"><span>Computer Science & Technology</span></label>
               <label class="checkbox-field"><input type="checkbox" name="subjects" value="Business"><span>Business</span></label>
-              <label class="checkbox-field"><input type="checkbox" name="subjects" value="Critical Thinking"><span>Critical Thinking</span></label>
+              <label class="checkbox-field"><input type="checkbox" name="subjects" value="Mathematics"><span>Mathematics</span></label>
             </div>
           </fieldset>
 
@@ -100,13 +97,13 @@
           <div class="field-error" id="password-mismatch-error" style="margin-top:-10px; margin-bottom: 20px;">Passwords do not match.</div>
 
           <button type="submit" class="btn btn-primary btn-block">Create Account</button>
-          <p class="hint" style="text-align:center; margin-top: 14px;">Account creation is a frontend demo — no data is stored yet. <span class="placeholder-tag">Demo Only</span></p>
+          <p class="hint" style="text-align:center; margin-top: 14px;">Account creation is a frontend demo — no data is stored yet.</p>
         </form>
 
         <div class="confirm-panel hidden" id="register-confirm">
           <div class="confirm-icon">✓</div>
           <h3>Welcome to Curious Works!</h3>
-          <p>Your account request has been received. Once a backend is connected, this is where account access and enrollment history will live. <span class="placeholder-tag">Demo Confirmation</span></p>
+          <p>Your account request has been received. Once a backend is connected, this is where account access and enrollment history will live.</p>
           <a href="courses.html" class="btn btn-secondary">Browse Courses</a>
         </div>
 
@@ -119,6 +116,7 @@
 <footer class="site-footer" id="site-footer"></footer>
 
 <script src="js/components.js"></script>
+<script src="js/particles.js"></script>
 <script src="js/forms.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
