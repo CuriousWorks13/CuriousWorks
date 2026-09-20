@@ -179,7 +179,8 @@
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const wrap = document.getElementById('featured-courses');
-    const featured = CW_COURSES.slice(0, 3);
+    const featuredSlugs = ['biology', 'artificial-intelligence', 'introduction-to-business'];
+    const featured = featuredSlugs.map(cwFindCourse).filter(Boolean);
     wrap.innerHTML = featured.map(function (c) { return cwCourseCardHTML(c); }).join('');
     cwInitScrollReveal();
     cwAnimateCounters();
