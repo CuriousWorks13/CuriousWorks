@@ -107,6 +107,88 @@ function cwInitBackground() {
   document.body.insertBefore(bg, document.body.firstChild);
 }
 
+/**
+ * Newsletter signup popup — appears 5s after page load, once ever (tracked
+ * via localStorage), skipped on the Register page itself and for anyone who
+ * has already registered. Submits to the same Formspree endpoint as the
+ * full Register form.
+ */
+function cwInitNewsletterPopup() {
+  if (localStorage.getItem('cw_popup_seen')) return;
+  if (document.body.getAttribute('data-page') === 'register') return;
+
+  setTimeout(function () {
+    if (localStorage.getItem('cw_popup_seen')) return;
+    cwShowNewsletterPopup();
+  }, 5000);
+}
+
+function cwMarkPopupSeen() {
+  try { localStorage.setItem('cw_popup_seen', '1'); } catch (e) { /* ignore */ }
+}
+
+function cwShowNewsletterPopup() {
+  const overlay = document.createElement('div');
+  overlay.className = 'newsletter-overlay';
+  overlay.id = 'newsletter-overlay';
+  overlay.innerHTML =
+    '<div class="newsletter-modal" role="dialog" aria-modal="true" aria-labelledby="newsletter-title">' +
+      '<button type="button" class="newsletter-close" id="newsletter-close" aria-label="Close">&times;</button>' +
+      '<div class="card-icon">✦</div>' +
+      '<h3 id="newsletter-title">Never miss a class.</h3>' +
+      '<p>Get an email when new courses and terms open up — no spam, unsubscribe anytime.</p>' +
+      '<form id="newsletter-form" novalidate>' +
+        '<div class="field">' +
+          '<label for="newsletter-email" class="sr-only">Email Address</label>' +
+          '<input type="email" id="newsletter-email" name="_replyto" placeholder="you@example.com" required>' +
+        '</div>' +
+        '<input type="hidden" name="_subject" value="New Curious Works Newsletter Signup (Popup)">' +
+        '<button type="submit" class="btn btn-primary btn-block">Notify Me</button>' +
+      '</form>' +
+      '<div class="confirm-panel hidden" id="newsletter-confirm">' +
+        '<div class="confirm-icon">✓</div>' +
+        '<h3>You\'re on the list!</h3>' +
+        '<p>We\'ll email you about new courses and important updates.</p>' +
+      '</div>' +
+      '<button type="button" class="btn-ghost newsletter-dismiss" id="newsletter-dismiss">No thanks</button>' +
+    '</div>';
+
+  document.body.appendChild(overlay);
+  document.body.style.overflow = 'hidden';
+
+  function close() {
+    cwMarkPopupSeen();
+    document.body.style.overflow = '';
+    overlay.remove();
+    document.removeEventListener('keydown', onKeydown);
+  }
+
+  function onKeydown(e) {
+    if (e.key === 'Escape') close();
+  }
+
+  document.getElementById('newsletter-close').addEventListener('click', close);
+  document.getElementById('newsletter-dismiss').addEventListener('click', close);
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) close();
+  });
+  document.addEventListener('keydown', onKeydown);
+
+  cwHandleForm('#newsletter-form', '#newsletter-confirm', {
+    endpoint: 'https://formspree.io/f/myezezwb',
+    onSuccess: function () {
+      cwMarkPopupSeen();
+      document.body.style.overflow = '';
+      setTimeout(close, 2500);
+    }
+  });
+
+  setTimeout(function () {
+    const input = document.getElementById('newsletter-email');
+    if (input) input.focus();
+  }, 50);
+}
+
 function cwInitChrome() {
   cwInitBackground();
   const header = document.getElementById('site-header');
@@ -267,3 +349,4 @@ function cwAnimateCounters(selector) {
 }
 
 document.addEventListener('DOMContentLoaded', cwInitChrome);
+document.addEventListener('DOMContentLoaded', cwInitNewsletterPopup);
