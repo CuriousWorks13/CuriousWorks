@@ -52,7 +52,7 @@
             </div>
             <div class="field">
               <label for="reg-email">Email Address</label>
-              <input type="email" id="reg-email" name="email" placeholder="you@example.com" required>
+              <input type="email" id="reg-email" name="_replyto" placeholder="you@example.com" required>
             </div>
           </div>
 
@@ -96,6 +96,7 @@
           </div>
           <div class="field-error" id="password-mismatch-error" style="margin-top:-10px; margin-bottom: 20px;">Passwords do not match.</div>
 
+          <input type="hidden" name="_subject" value="New Curious Works Registration">
           <button type="submit" class="btn btn-primary btn-block">Create Account</button>
           <p class="hint" style="text-align:center; margin-top: 14px;">Account creation is a frontend demo — no data is stored yet.</p>
         </form>
@@ -136,7 +137,10 @@
       }
     }, true);
 
-    cwHandleForm('#register-form', '#register-confirm', { endpoint: '/api/register' });
+    cwHandleForm('#register-form', '#register-confirm', {
+      endpoint: 'https://formspree.io/f/myezezwb',
+      excludeFields: ['password', 'passwordConfirm']
+    });
   });
 </script>
 </body>

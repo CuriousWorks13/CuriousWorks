@@ -52,9 +52,24 @@ function cwHideFormError(form) {
  * Wires a <form> to validate, submit (see cwSubmitToBackend above), then
  * swap in a confirmation panel. `options.endpoint` is the route this form
  * submits to (a real URL once one exists, a placeholder path otherwise);
- * `options.onSuccess(data, form)` runs after a successful submission. On
+ * `options.onSuccess(data, form)` runs after a successful submission.
+ * `options.excludeFields` (array of field names) are collected from the
+ * form for validation but stripped out before anything is sent — use this
+ * for fields that should never leave the browser, e.g. a password. On
  * failure, a visible error message is shown instead of a fake success.
  */
+/** Like Object.fromEntries(new FormData(form)), but joins repeated keys
+ * (checkboxes sharing one `name`) instead of silently keeping only the last. */
+function cwFormDataToObject(form) {
+  const fd = new FormData(form);
+  const obj = {};
+  new Set(fd.keys()).forEach(function (key) {
+    const values = fd.getAll(key);
+    obj[key] = values.length > 1 ? values.join(', ') : values[0];
+  });
+  return obj;
+}
+
 function cwHandleForm(formSelector, confirmSelector, options) {
   const form = document.querySelector(formSelector);
   const confirmPanel = confirmSelector ? document.querySelector(confirmSelector) : null;
@@ -70,7 +85,8 @@ function cwHandleForm(formSelector, confirmSelector, options) {
     }
 
     cwHideFormError(form);
-    const data = Object.fromEntries(new FormData(form).entries());
+    const data = cwFormDataToObject(form);
+    (opts.excludeFields || []).forEach(function (key) { delete data[key]; });
     const submitBtn = form.querySelector('button[type="submit"]');
     const originalLabel = submitBtn ? submitBtn.textContent : '';
 
