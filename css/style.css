@@ -942,3 +942,84 @@ legend { font-size: 0.85rem; font-weight: 600; margin-bottom: 10px; padding: 0; 
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 6px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--accent-deep); }
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Newsletter popup ---------- */
+.newsletter-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: rgba(4, 7, 14, 0.72);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: newsletterFadeIn 320ms ease;
+}
+
+@keyframes newsletterFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.newsletter-modal {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: linear-gradient(160deg, var(--bg-elevated-2), var(--bg-elevated));
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  padding: 40px 32px 32px;
+  text-align: center;
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.7), 0 0 0 1px var(--border);
+  animation: newsletterPopIn 380ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes newsletterPopIn {
+  from { opacity: 0; transform: scale(0.92) translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+
+.newsletter-modal .card-icon {
+  margin: 0 auto 18px;
+}
+
+.newsletter-modal h3 { font-size: 1.3rem; margin-bottom: 10px; }
+.newsletter-modal p { font-size: 0.92rem; margin-bottom: 22px; }
+.newsletter-modal .field { margin-bottom: 14px; }
+
+.newsletter-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text-dim);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+}
+.newsletter-close:hover { color: var(--text); border-color: var(--accent); background: var(--accent-glow-soft); }
+
+.newsletter-dismiss { margin-top: 14px; }
+
+@media (max-width: 480px) {
+  .newsletter-modal { padding: 36px 22px 26px; }
+}

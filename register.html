@@ -139,7 +139,8 @@
 
     cwHandleForm('#register-form', '#register-confirm', {
       endpoint: 'https://formspree.io/f/myezezwb',
-      excludeFields: ['password', 'passwordConfirm']
+      excludeFields: ['password', 'passwordConfirm'],
+      onSuccess: function () { cwMarkPopupSeen(); }
     });
   });
 </script>
