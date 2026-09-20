@@ -110,7 +110,7 @@
             </div>
             <div class="field">
               <label for="join-email">Email Address</label>
-              <input type="email" id="join-email" name="email" placeholder="you@example.com" required>
+              <input type="email" id="join-email" name="_replyto" placeholder="you@example.com" required>
             </div>
           </div>
 
@@ -153,6 +153,7 @@
             <textarea id="join-more" name="additionalInfo" placeholder="Optional — links to work, references, questions, etc."></textarea>
           </div>
 
+          <input type="hidden" name="_subject" value="New Curious Works Team Application">
           <button type="submit" class="btn btn-primary btn-block" style="margin-top: 8px;">Submit Application</button>
         </form>
 
@@ -176,7 +177,7 @@
 <script src="js/forms.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    cwHandleForm('#join-form', '#join-confirm', { endpoint: '/api/join-application' });
+    cwHandleForm('#join-form', '#join-confirm', { endpoint: 'https://formspree.io/f/xoevevdb' });
   });
 </script>
 </body>
