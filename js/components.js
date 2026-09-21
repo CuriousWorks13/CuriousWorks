@@ -53,8 +53,7 @@ function cwFooterTemplate() {
           '<div class="footer-tagline">Pushing past our limits.</div>' +
           '<p>A student-led educational initiative bringing curiosity-driven learning to elementary and middle school students everywhere.</p>' +
           '<div class="social-row">' +
-            '<a class="social-icon" href="#" aria-label="Instagram (placeholder)">IG</a>' +
-            '<a class="social-icon" href="#" aria-label="YouTube (placeholder)">YT</a>' +
+            '<a class="social-icon" href="https://www.instagram.com/curiousworks_/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>' +
             '<a class="social-icon" href="#" aria-label="LinkedIn (placeholder)">in</a>' +
           '</div>' +
         '</div>' +
@@ -79,7 +78,7 @@ function cwFooterTemplate() {
         '<div class="footer-col">' +
           '<h4>Contact</h4>' +
           '<ul>' +
-            '<li><a href="mailto:hello@example.com">hello@example.com</a></li>' +
+            '<li><a href="mailto:info.curiousworks@gmail.com">info.curiousworks@gmail.com</a></li>' +
             '<li>Serving students nationwide</li>' +
           '</ul>' +
         '</div>' +
