@@ -33,7 +33,7 @@
           <h3>Become an Instructor</h3>
           <p>Design and teach a course in a subject you love. We provide training and curriculum support.</p>
           <ul>
-            <li>High school students and above</li>
+            <li>High school students (grades 9–12)</li>
             <li>No prior teaching experience required</li>
             <li>Flexible, part-time commitment</li>
           </ul>
@@ -116,8 +116,14 @@
 
           <div class="form-row">
             <div class="field">
-              <label for="join-age">Grade / Age</label>
-              <input type="text" id="join-age" name="gradeOrAge" placeholder="e.g. 10th Grade or Adult" required>
+              <label for="join-age">Grade</label>
+              <select id="join-age" name="gradeOrAge" required>
+                <option value="" disabled selected>Select a grade</option>
+                <option value="9th Grade">9th Grade</option>
+                <option value="10th Grade">10th Grade</option>
+                <option value="11th Grade">11th Grade</option>
+                <option value="12th Grade">12th Grade</option>
+              </select>
             </div>
             <div class="field">
               <label for="join-role">Role You're Interested In</label>
