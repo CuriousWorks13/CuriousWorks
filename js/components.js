@@ -135,7 +135,7 @@ function cwShowNewsletterPopup() {
       '<button type="button" class="newsletter-close" id="newsletter-close" aria-label="Close">&times;</button>' +
       '<div class="card-icon">✦</div>' +
       '<h3 id="newsletter-title">Never miss a class.</h3>' +
-      '<p>Get an email when new courses and terms open up — no spam, unsubscribe anytime.</p>' +
+      '<p>Get an email when new courses and terms open up. No spam, unsubscribe anytime.</p>' +
       '<form id="newsletter-form" novalidate>' +
         '<div class="field">' +
           '<label for="newsletter-email" class="sr-only">Email Address</label>' +
