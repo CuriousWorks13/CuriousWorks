@@ -11,6 +11,62 @@ const CW_NAV_LINKS = [
   { href: 'contact.html', label: 'Contact' }
 ];
 
+/**
+ * Light/dark theme. CW_DEFAULT_THEME is what new visitors see before they've
+ * chosen for themselves; change it to 'light' or 'dark' to change the
+ * site-wide default. Their own choice (once made) always wins via localStorage.
+ * Keep this key in sync with the inline "prevent flash" script in each page's <head>.
+ */
+const CW_THEME_KEY = 'cw_theme';
+const CW_DEFAULT_THEME = 'dark';
+
+const CW_ICON_SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.6M12 18.9v2.6M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12h2.6M18.9 12h2.6M4.2 19.8l1.8-1.8M18 6l1.8-1.8"/></svg>';
+const CW_ICON_MOON = '<svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 1 0 11 11Z"/></svg>';
+
+function cwGetTheme() {
+  try {
+    return localStorage.getItem(CW_THEME_KEY) || CW_DEFAULT_THEME;
+  } catch (e) {
+    return CW_DEFAULT_THEME;
+  }
+}
+
+/** Applies a theme site-wide: root attribute, logo images, and toggle button icon. */
+function cwApplyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+
+  document.querySelectorAll('.brand-mark').forEach(function (img) {
+    img.src = theme === 'light' ? 'assets/logo-mark-light.png' : 'assets/logo-mark.png';
+  });
+  document.querySelectorAll('.brand-wordmark').forEach(function (img) {
+    img.src = theme === 'light' ? 'assets/wordmark-light.png' : 'assets/wordmark.png';
+  });
+
+  const toggle = document.getElementById('theme-toggle');
+  if (toggle) {
+    toggle.innerHTML = theme === 'light' ? CW_ICON_MOON : CW_ICON_SUN;
+    toggle.setAttribute('aria-label', theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
+  }
+
+  try { localStorage.setItem(CW_THEME_KEY, theme); } catch (e) { /* localStorage unavailable — choice just won't persist */ }
+}
+
+/** Creates the fixed corner theme toggle button, once per page. */
+function cwInitThemeToggle() {
+  if (!document.getElementById('theme-toggle')) {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.id = 'theme-toggle';
+    btn.className = 'theme-toggle';
+    document.body.appendChild(btn);
+    btn.addEventListener('click', function () {
+      const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+      cwApplyTheme(current === 'light' ? 'dark' : 'light');
+    });
+  }
+  cwApplyTheme(cwGetTheme());
+}
+
 function cwHeaderTemplate(activePage) {
   const links = CW_NAV_LINKS.map(function (link) {
     const page = link.href.replace('.html', '');
@@ -214,6 +270,7 @@ function cwInitChrome() {
     footer.innerHTML = cwFooterTemplate();
   }
 
+  cwInitThemeToggle();
   cwInitScrollReveal();
 }
 
