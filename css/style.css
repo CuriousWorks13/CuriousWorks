@@ -66,19 +66,19 @@
 }
 
 :root[data-theme="light"] {
-  --bg: #f6f8fb;
+  --bg: #e9eff9;
   --bg-elevated: #ffffff;
-  --bg-elevated-2: #eef2f7;
-  --surface: rgba(16, 24, 40, 0.03);
-  --surface-strong: rgba(16, 24, 40, 0.06);
-  --border: rgba(16, 24, 40, 0.09);
-  --border-strong: rgba(16, 24, 40, 0.16);
+  --bg-elevated-2: #dde7f5;
+  --surface: rgba(16, 24, 40, 0.055);
+  --surface-strong: rgba(16, 24, 40, 0.09);
+  --border: rgba(16, 24, 40, 0.14);
+  --border-strong: rgba(16, 24, 40, 0.24);
 
   --accent: #1c6fd4;
   --accent-2: #0f5fc0;
   --accent-deep: #143f8a;
-  --accent-glow: rgba(28, 111, 212, 0.25);
-  --accent-glow-soft: rgba(28, 111, 212, 0.12);
+  --accent-glow: rgba(28, 111, 212, 0.3);
+  --accent-glow-soft: rgba(28, 111, 212, 0.15);
 
   --text: #101828;
   --text-dim: #46536b;
@@ -87,27 +87,27 @@
   --success: #0f6b41;
   --danger: #c23131;
 
-  --header-bg: rgba(255, 255, 255, 0.78);
-  --field-bg: rgba(16, 24, 40, 0.03);
-  --field-bg-focus: rgba(16, 24, 40, 0.05);
+  --header-bg: rgba(233, 239, 249, 0.82);
+  --field-bg: rgba(16, 24, 40, 0.045);
+  --field-bg-focus: rgba(16, 24, 40, 0.075);
   --hero-gradient-start: #101828;
-  --shadow-soft: rgba(16, 24, 40, 0.16);
-  --orb-opacity: 0.18;
+  --shadow-soft: rgba(16, 24, 40, 0.22);
+  --orb-opacity: 0.32;
 
   --body-bg-image:
-    radial-gradient(ellipse 900px 600px at 12% -10%, rgba(28, 111, 212, 0.08), transparent 60%),
-    radial-gradient(ellipse 800px 500px at 100% 10%, rgba(15, 95, 192, 0.05), transparent 55%),
-    linear-gradient(180deg, #ffffff 0%, #f6f8fb 40%, #eef2f7 100%);
+    radial-gradient(ellipse 950px 650px at 10% -12%, rgba(28, 111, 212, 0.22), transparent 62%),
+    radial-gradient(ellipse 850px 550px at 105% 8%, rgba(15, 95, 192, 0.16), transparent 58%),
+    linear-gradient(180deg, #eef4fc 0%, #e3ebf7 45%, #d9e3f2 100%);
   --btn-primary-text: #ffffff;
   --warning: #b45309;
   --danger-soft-text: #b91c1c;
-  --danger-soft-bg: rgba(194, 49, 49, 0.08);
-  --danger-soft-border: rgba(194, 49, 49, 0.35);
-  --mobile-nav-bg: rgba(255, 255, 255, 0.98);
-  --success-soft-bg: rgba(15, 107, 65, 0.10);
-  --success-soft-border: rgba(15, 107, 65, 0.35);
-  --cta-banner-bg: linear-gradient(135deg, rgba(28,111,212,0.10), rgba(20,63,138,0.05));
-  --summary-box-border: rgba(28,111,212,0.3);
+  --danger-soft-bg: rgba(194, 49, 49, 0.1);
+  --danger-soft-border: rgba(194, 49, 49, 0.4);
+  --mobile-nav-bg: rgba(240, 245, 252, 0.98);
+  --success-soft-bg: rgba(15, 107, 65, 0.12);
+  --success-soft-border: rgba(15, 107, 65, 0.4);
+  --cta-banner-bg: linear-gradient(135deg, rgba(28,111,212,0.16), rgba(20,63,138,0.08));
+  --summary-box-border: rgba(28,111,212,0.35);
 }
 
 /* Smooth, non-jarring switch between themes */
@@ -822,7 +822,7 @@ legend { font-size: 0.85rem; font-weight: 600; margin-bottom: 10px; padding: 0; 
 .site-footer {
   border-top: 1px solid var(--border);
   padding: 64px 0 28px;
-  background: var(--bg-elevated);
+  background: var(--bg-elevated-2);
   margin-top: 60px;
 }
 
