@@ -360,7 +360,10 @@ function cwCourseCardHTML(course, options) {
           '<div class="term-pill-row">' + termPills + '</div>' +
         '</div>' +
         '<span class="' + badgeClass + '">' + spotsText + '</span>' +
-        '<a href="' + (opts.withLink === false ? '#' : 'enroll.html?course=' + course.slug) + '" class="btn btn-primary btn-block">Enroll Now</a>' +
+        '<div class="course-actions">' +
+          '<a href="' + (opts.withLink === false ? '#' : 'enroll.html?course=' + course.slug) + '" class="btn btn-primary">Enroll Now</a>' +
+          '<a href="syllabus.html?course=' + course.slug + '" class="btn btn-secondary">Syllabus</a>' +
+        '</div>' +
       '</div>' +
     '</article>'
   );
