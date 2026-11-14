@@ -16,10 +16,10 @@
  * term's month doesn't line up to 8 sessions on its own.
  */
 const CW_TERMS = [
-  { key: 'nov-2026', label: 'November 2026', range: 'Nov 7 – Nov 29, 2026' },
   { key: 'dec-2026', label: 'December 2026', range: 'Dec 5 – Dec 27, 2026' },
-  { key: 'feb-2027', label: 'February 2027', range: 'Feb 6 – Feb 28, 2027' },
-  { key: 'apr-2027', label: 'April 2027', range: 'Apr 3 – Apr 25, 2027' }
+  { key: 'jan-2027', label: 'January 2027', range: 'Jan 2 – Jan 24, 2027' },
+  { key: 'mar-2027', label: 'March 2027', range: 'Mar 6 – Mar 28, 2027' },
+  { key: 'may-2027', label: 'May 2027', range: 'May 1 – May 23, 2027' }
 ];
 
 const CW_ICONS = {
