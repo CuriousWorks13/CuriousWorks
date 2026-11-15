@@ -34,21 +34,21 @@
           <div class="course-title" id="summary-title"></div>
           <div class="course-sub" id="summary-sub"></div>
         </div>
-        <a href="courses.html" class="btn btn-ghost btn-sm">Change Course</a>
+        <a href="courses.html" class="btn btn-ghost btn-sm">Browse Courses</a>
       </div>
 
       <div class="form-card reveal fade-only">
 
         <form id="enroll-form" novalidate>
-          <div class="form-row">
-            <div class="field">
-              <label for="course-select">Course</label>
-              <select id="course-select" name="course" required></select>
-            </div>
-            <div class="field">
-              <label for="term-select">Term</label>
-              <select id="term-select" name="term" required></select>
-            </div>
+          <fieldset>
+            <legend>Courses</legend>
+            <p style="font-size: 0.85rem; color: var(--text-dim); margin: 4px 0 14px;">You can sign up for more than one course at once, just check every box that applies. They'll all be enrolled for the same term below.</p>
+            <div class="checkbox-grid" id="course-checkbox-grid"></div>
+          </fieldset>
+
+          <div class="field">
+            <label for="term-select">Term</label>
+            <select id="term-select" name="term" required></select>
           </div>
 
           <div class="form-row">
@@ -116,9 +116,9 @@
 <script src="js/forms.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const select = document.getElementById('course-select');
-    select.innerHTML = CW_COURSES.map(function (c) {
-      return '<option value="' + c.slug + '">' + c.title + '</option>';
+    const grid = document.getElementById('course-checkbox-grid');
+    grid.innerHTML = CW_COURSES.map(function (c) {
+      return '<label class="checkbox-field"><input type="checkbox" name="course" value="' + c.slug + '"><span>' + c.title + '</span></label>';
     }).join('');
 
     const termSelect = document.getElementById('term-select');
@@ -129,30 +129,49 @@
     const params = new URLSearchParams(window.location.search);
     const preselect = params.get('course');
     const course = preselect ? cwFindCourse(preselect) : null;
+    if (course) {
+      const box = grid.querySelector('input[value="' + course.slug + '"]');
+      if (box) box.checked = true;
+    }
 
     function updateSummary() {
-      const selected = cwFindCourse(select.value);
-      if (!selected) return;
-      document.getElementById('course-summary').style.display = 'flex';
-      document.getElementById('summary-title').textContent = selected.title;
-      document.getElementById('summary-sub').textContent = selected.ageRange + ' · ' + selected.level + ' · ' + selected.duration;
+      const checked = Array.from(grid.querySelectorAll('input:checked'));
+      const summaryBox = document.getElementById('course-summary');
+      if (!checked.length) {
+        summaryBox.style.display = 'none';
+        return;
+      }
+      const selected = checked.map(function (box) { return cwFindCourse(box.value); }).filter(Boolean);
+      summaryBox.style.display = 'flex';
+      document.getElementById('summary-title').textContent = selected.map(function (c) { return c.title; }).join(', ');
+      document.getElementById('summary-sub').textContent = selected.length === 1
+        ? selected[0].ageRange + ' · ' + selected[0].level + ' · ' + selected[0].duration
+        : selected.length + ' courses selected';
     }
 
-    if (course) {
-      select.value = course.slug;
-    }
     updateSummary();
-    select.addEventListener('change', updateSummary);
+    grid.addEventListener('change', updateSummary);
+
+    const enrollForm = document.getElementById('enroll-form');
+    enrollForm.addEventListener('submit', function (e) {
+      if (!grid.querySelector('input:checked')) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        cwShowFormError(enrollForm, 'Please select at least one course.');
+      }
+    });
 
     cwHandleForm('#enroll-form', '#enroll-confirm', {
       endpoint: 'https://formspree.io/f/xyezezeb',
       onSuccess: function (data) {
-        cwMarkEnrolled(data.course);
+        const slugs = (data.course || '').split(', ').filter(Boolean);
+        const selected = slugs.map(function (slug) { return cwFindCourse(slug); }).filter(Boolean);
+        selected.forEach(function (c) { cwMarkEnrolled(c.slug); });
         const term = CW_TERMS.find(function (t) { return t.key === data.term; });
-        const selected = cwFindCourse(data.course);
-        if (term && selected) {
+        if (term && selected.length) {
+          const courseList = selected.map(function (c) { return c.title; }).join(', ');
           document.getElementById('enroll-confirm-detail').textContent =
-            'Thanks for enrolling ' + selected.title + ' for the ' + term.label + ' term (' + term.range + '). We\'ll email you within 2–3 business days to confirm scheduling. It\'s completely free.';
+            'Thanks for enrolling in ' + courseList + ' for the ' + term.label + ' term (' + term.range + '). We\'ll email you within 2–3 business days to confirm scheduling. It\'s completely free.';
         }
       }
     });
