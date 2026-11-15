@@ -18,8 +18,7 @@
 const CW_TERMS = [
   { key: 'dec-2026', label: 'December 2026', range: 'Dec 5 – Dec 27, 2026' },
   { key: 'jan-2027', label: 'January 2027', range: 'Jan 2 – Jan 24, 2027' },
-  { key: 'mar-2027', label: 'March 2027', range: 'Mar 6 – Mar 28, 2027' },
-  { key: 'may-2027', label: 'May 2027', range: 'May 1 – May 23, 2027' }
+  { key: 'mar-2027', label: 'March 2027', range: 'Mar 6 – Mar 28, 2027' }
 ];
 
 const CW_ICONS = {
@@ -38,7 +37,12 @@ const CW_ICONS = {
   integral: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M16 4c-2 0-3 1.5-3 4v8c0 2.5-1 4-3 4"/><path d="M8 4h2M14 20h2"/></svg>'
 };
 
-const CW_COURSES = [
+/**
+ * Every course the program offers, including ones not currently open for
+ * enrollment. Keep writing new courses here. To bring one back online,
+ * add its slug to CW_ACTIVE_COURSE_SLUGS below, nothing else changes.
+ */
+const CW_COURSES_ALL = [
   // --- Science ---
   {
     slug: 'biology',
@@ -229,6 +233,17 @@ const CW_COURSES = [
     spotsLeft: 3
   }
 ];
+
+/**
+ * Only these courses are currently open for enrollment. Add or remove a
+ * slug here to change what's offered, full data for every other course
+ * stays in CW_COURSES_ALL above, ready to turn back on.
+ */
+const CW_ACTIVE_COURSE_SLUGS = ['html', 'python', 'pre-algebra', 'artificial-intelligence'];
+
+const CW_COURSES = CW_COURSES_ALL.filter(function (c) {
+  return CW_ACTIVE_COURSE_SLUGS.indexOf(c.slug) !== -1;
+});
 
 function cwFindCourse(slug) {
   return CW_COURSES.find(function (c) { return c.slug === slug; });
