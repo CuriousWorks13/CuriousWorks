@@ -15,11 +15,16 @@
  * start of next month" fallback, but that's the rule to follow if a future
  * term's month doesn't line up to 8 sessions on its own.
  */
-const CW_TERMS = [
+const CW_TERMS_ALL = [
   { key: 'dec-2026', label: 'December 2026', range: 'Dec 5 – Dec 27, 2026' },
   { key: 'jan-2027', label: 'January 2027', range: 'Jan 2 – Jan 24, 2027' },
   { key: 'mar-2027', label: 'March 2027', range: 'Mar 6 – Mar 28, 2027' }
 ];
+
+const CW_ACTIVE_TERM_KEYS = ['dec-2026'];
+const CW_TERMS = CW_TERMS_ALL.filter(function (t) {
+  return CW_ACTIVE_TERM_KEYS.indexOf(t.key) !== -1;
+});
 
 const CW_ICONS = {
   leaf: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20C4 11 11 4 20 4c0 9-7 16-16 16Z"/><path d="M4 20 12 12"/></svg>',
